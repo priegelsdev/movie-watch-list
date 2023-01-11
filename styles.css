@@ -61,8 +61,58 @@ input {
   border-radius: 0 5px 5px 0;
 }
 
+/** MAIN **/
+
 main {
   position: relative;
+}
+
+.movie-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.movie-card {
+  margin: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+.movie-poster {
+  width: 70%;
+  margin: 0 auto;
+  display: block;
+}
+
+.movie-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.movie-title-container {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.movie-details-container {
+  display: flex;
+  align-items: center;
+}
+
+.add-movie-btn {
+  padding: 1em;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  line-height: 1;
+  gap: 5px;
+}
+
+.add-movie-btn i {
+  margin-top: 1px;
 }
 
 /** MEDIA QUERIES **/
