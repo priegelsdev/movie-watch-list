@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2em 1em;
+}
+
+form {
+    width: 100%;
+    position: absolute;
+    top: -1.325em;
+    display: flex;
+    justify-content: center;
+}
+
+input, .search-btn {
+    border: 1px solid #D1D5DB;
+    padding: 1em;
+}
+
+input {
+    width: 80vw;
+/*     padding: 0.725em; */
+    border-radius: 5px 0 0 5px;;
+}
+
+.search-btn {
+    padding: 0 2em;
+    border-radius: 0 5px 5px 0;
+}
+
+main {
+    position: relative;
+}
