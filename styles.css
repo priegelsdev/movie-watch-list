@@ -23,6 +23,10 @@ body {
   font-size: 14px;
 }
 
+h2 {
+  margin: 0;
+}
+
 /** HEADER **/
 
 header {
@@ -72,8 +76,10 @@ main {
   flex-direction: column;
 }
 
+/** MOVIE CARD **/
+
 .movie-card {
-  margin: 2em;
+  margin: 3em 2em 2em 2em;
   display: flex;
   flex-direction: column;
 }
@@ -99,10 +105,11 @@ main {
 .movie-details-container {
   display: flex;
   align-items: center;
+  margin: -0.625em 0;
+  gap: 0.625rem;
 }
 
 .add-movie-btn {
-  padding: 1em;
   background-color: transparent;
   border: none;
   display: flex;
@@ -112,9 +119,13 @@ main {
 }
 
 .add-movie-btn i {
-  margin-top: 1px;
+  margin-top: 1px
 }
-
+/* 
+.movie-synopsis {
+  text-align: justify;
+}
+ */
 /** MEDIA QUERIES **/
 
 @media (min-width: 480px) {
