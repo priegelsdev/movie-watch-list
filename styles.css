@@ -89,6 +89,10 @@ main {
   margin-top: 3em;
 }
 
+.movie-card:last-of-type {
+  margin-bottom: 2em;
+}
+
 .movie-card {
   max-width: 82%;
   margin: 1em 2em 0 2em;
