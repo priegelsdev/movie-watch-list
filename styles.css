@@ -149,6 +149,10 @@ main {
   margin-top: 1px
 }
 
+.movie-synopsis {
+  margin: 0.625em;
+}
+
 hr {
   width: 82%;
 }
