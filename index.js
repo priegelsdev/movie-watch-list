@@ -14,6 +14,8 @@ async function getMovies() {
   const res = await fetch(`https://www.omdbapi.com/?s=${searchValue}&apikey=28f05d61`)
   const data = await res.json()
 
+  movieContainer.innerHTML = '';
+
   data.Search.forEach(movie => {
 
     fetch(`https://www.omdbapi.com/?t=${movie.Title}&apikey=28f05d61`)
@@ -24,7 +26,7 @@ async function getMovies() {
         <div class="movie-info-container">
           <div class="movie-title-container">
             <h2 class="movie-title">${data.Title}</h2>
-            <p class="movie-rating">${data.imdbRating}</p>
+            <p class="movie-rating"><i class="fa-solid fa-star"></i>${data.imdbRating}</p>
           </div>
           <div class="movie-details-container">
             <p class="movie-runtime">${data.Runtime}</p>
@@ -34,6 +36,7 @@ async function getMovies() {
           <p class="movie-synopsis">${data.Plot}</p>
         </div>
       </div>
+      <hr>
     `}  
     )
   })
@@ -41,6 +44,11 @@ async function getMovies() {
 
 function renderMovies() {
   
-
-  
 }
+
+movieContainer.innerHTML = 
+  `<div class="explore-div">
+    <i class="fa-solid fa-film fa-3x"></i>
+    <p class="start-exploring">Start exploring</p>
+   </div>
+  `
