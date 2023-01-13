@@ -14,8 +14,9 @@ if(window.location.pathname == '/index.html') {
 }
 
 document.addEventListener('click', (e) => {
-    if (e.target.id === 'add-movie-btn') {
+    if (e.target.id === 'add-movie-btn' && !watchList.includes(e.target.dataset.imdbid)) {
         watchList.push(e.target.dataset.imdbid)
+        localStorage.setItem('id', watchList)
     }
 })
 
@@ -56,29 +57,34 @@ async function getMovies() {
         <hr>
       `}  
       )
-      console.log(movie)
     })
   }
 }
 
-// function to add movie to watch list involving imdbID; save to array; 
+// function to add movie to watch list involving imdbID; save to array
+
+function saveToLocal(watchlist) {
+        
+}
+
+// function to display initial state of page
 
 function render() {
-  if(window.location.pathname == '/index.html') {
-    movieContainer.innerHTML = 
-    ` <div class="explore-div">
-        <i class="fa-solid fa-film fa-3x"></i>
-        <p class="start-exploring">Start exploring</p>
-      </div>
-    ` 
-  } else if (window.location.pathname == '/watchlist.html' /* && watchlist empty */) {
-    movieContainer.innerHTML = 
-    ` <div class="explore-div">
-        <p class="start-exploring">Your watchlist is looking a little empty...</p>
-        <button class="add-movie-btn watchlist"><i class="fa-solid fa-circle-plus"></i>Let's add some movies</button>
-      </div>
-    ` 
-  }
+    if (window.location.pathname == '/watchlist.html' && watchList.length == 0) {
+        movieContainer.innerHTML = 
+        ` <div class="explore-div">
+            <p class="start-exploring">Your watchlist is looking a little empty...</p>
+            <button class="add-movie-btn watchlist"><i class="fa-solid fa-circle-plus"></i>Let's add some movies</button>
+        </div>
+        ` 
+    } else {
+        movieContainer.innerHTML = 
+        ` <div class="explore-div">
+            <i class="fa-solid fa-film fa-3x"></i>
+            <p class="start-exploring">Start exploring</p>
+            </div>
+        ` 
+    }
 }
 
 render();
