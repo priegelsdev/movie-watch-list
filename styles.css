@@ -50,6 +50,13 @@ form {
   justify-content: center;
 }
 
+.fa-magnifying-glass {
+  position: relative;
+  left: 1.75em;
+  top: 0.9em;
+  color: gray;
+}
+
 input, .search-btn {
   border: 1px solid #D1D5DB;
   padding: 1em;
@@ -57,7 +64,11 @@ input, .search-btn {
 
 input {
   max-width: 60vw;
-  border-radius: 5px 0 0 5px;;
+  border-radius: 5px 0 0 5px;
+}
+
+.search-input {
+  padding-left: 2.5em;
 }
 
 .search-btn {
