@@ -63,20 +63,47 @@ async function getMovies() {
 
 // function to add movie to watch list involving imdbID; save to array
 
-function saveToLocal(watchlist) {
+/* function saveToLocal(watchlist) {
         
-}
+} */
 
 // function to display initial state of page
 
 function render() {
-    if (window.location.pathname == '/watchlist.html' && watchList.length == 0) {
+    if (window.location.pathname == '/watchlist.html' && window.localStorage.length == 0) {
         movieContainer.innerHTML = 
         ` <div class="explore-div">
             <p class="start-exploring">Your watchlist is looking a little empty...</p>
             <button class="add-movie-btn watchlist"><i class="fa-solid fa-circle-plus"></i>Let's add some movies</button>
         </div>
         ` 
+    } else if (window.location.pathname == '/watchlist.html' && window.localStorage.length > 0) {
+        let storageStr = localStorage.getItem('id')
+        let storageArr = storageStr.split(',')
+        
+        storageArr.forEach(id => {
+            fetch(`https://www.omdbapi.com/?i=${id}&apikey=28f05d61`)
+            .then(res => res.json())
+            .then(data => { movieContainer.innerHTML += `
+                <div class="movie-card">
+                <img class="movie-poster" src="${data.Poster}">
+                <div class="movie-info-container">
+                    <div class="movie-title-container">
+                    <h2 class="movie-title">${data.Title}</h2>
+                    <p class="movie-rating"><i class="fa-solid fa-star"></i>${data.imdbRating}</p>
+                    </div>
+                    <div class="movie-details-container">
+                    <p class="movie-runtime">${data.Runtime}</p>
+                    <p class="movie-genres">${data.Genre}</p>
+                    <button data-imdbid="${data.imdbID}" id="add-movie-btn"><i class="fa-solid fa-circle-plus"></i>Watchlist</button>
+                    </div>
+                    <p class="movie-synopsis">${data.Plot}</p>
+                </div>
+                </div>
+                <hr>
+                `
+            })  
+        })
     } else {
         movieContainer.innerHTML = 
         ` <div class="explore-div">
