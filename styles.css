@@ -161,7 +161,7 @@ main {
   text-align: center;
 }
 
-.add-movie-btn {
+#add-movie-btn, #add-movies-btn, #remove-movie-btn {
   background-color: transparent;
   border: none;
   display: flex;
@@ -171,8 +171,12 @@ main {
   cursor: pointer;
 }
 
-.add-movie-btn i {
+#add-movie-btn i, #add-movies-btn i, #remove-movie-btn i {
   margin-top: 1px
+}
+
+#add-movies-btn {
+  margin: 0 auto;
 }
 
 .movie-synopsis {

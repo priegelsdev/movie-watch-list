@@ -6,7 +6,7 @@ const movieContainer = document.querySelector('.movie-container')
 
 let watchList = [];
 
-if(window.location.pathname == '/index.html' || window.location.pathname == '') {
+if(window.location.pathname != '/watchlist.html') {
   searchBtn.addEventListener('click', (e) => {
     e.preventDefault();
     getMovies();
@@ -22,6 +22,8 @@ document.addEventListener('click', (e) => {
         watchList.splice(index, 1)
         localStorage.setItem('id', watchList)
         render();
+    } else if (e.target.id === 'add-movies-btn') {
+        window.location.href="index.html";
     }
 })
 
@@ -66,50 +68,51 @@ async function getMovies() {
   }
 }
 
-// function to add movie to watch list involving imdbID; save to array
-
-/* function saveToLocal(watchlist) {
-        
-} */
-
-// function to display initial state of page
+// function to display pages with or without movies
 
 function render() {
     if (window.location.pathname == '/watchlist.html' && window.localStorage.length == 0) {
         movieContainer.innerHTML = 
         ` <div class="explore-div">
             <p class="start-exploring">Your watchlist is looking a little empty...</p>
-            <button class="add-movie-btn watchlist"><i class="fa-solid fa-circle-plus"></i>Let's add some movies</button>
+            <button id="add-movies-btn"><i class="fa-solid fa-circle-plus"></i>Let's add some movies</button>
         </div>
         ` 
     } else if (window.location.pathname == '/watchlist.html' && window.localStorage.length > 0) {
         let storageStr = localStorage.getItem('id')
         let storageArr = storageStr.split(',')
+        watchList = storageArr
+        movieContainer.innerHTML = ''
         
-        storageArr.forEach(id => {
-            fetch(`https://www.omdbapi.com/?i=${id}&apikey=28f05d61`)
-            .then(res => res.json())
-            .then(data => { movieContainer.innerHTML += `
-                <div class="movie-card">
-                <img class="movie-poster" src="${data.Poster}">
-                <div class="movie-info-container">
-                    <div class="movie-title-container">
-                    <h2 class="movie-title">${data.Title}</h2>
-                    <p class="movie-rating"><i class="fa-solid fa-star"></i>${data.imdbRating}</p>
-                    </div>
-                    <div class="movie-details-container">
-                    <p class="movie-runtime">${data.Runtime}</p>
-                    <p class="movie-genres">${data.Genre}</p>
-                    <button data-imdbid="${data.imdbID}" id="remove-movie-btn"><i class="fa-solid fa-circle-minus"></i>Remove</button>
-                    </div>
-                    <p class="movie-synopsis">${data.Plot}</p>
-                </div>
-                </div>
-                <hr>
-                `
-            })  
-            watchList = storageArr;
-        })
+        if (watchList.length != 0 && watchList[0] != '') {
+          watchList.forEach(id => {
+              fetch(`https://www.omdbapi.com/?i=${id}&apikey=28f05d61`)
+              .then(res => res.json())
+              .then(data => { movieContainer.innerHTML += `
+                  <div class="movie-card">
+                  <img class="movie-poster" src="${data.Poster}">
+                  <div class="movie-info-container">
+                      <div class="movie-title-container">
+                      <h2 class="movie-title">${data.Title}</h2>
+                      <p class="movie-rating"><i class="fa-solid fa-star"></i>${data.imdbRating}</p>
+                      </div>
+                      <div class="movie-details-container">
+                      <p class="movie-runtime">${data.Runtime}</p>
+                      <p class="movie-genres">${data.Genre}</p>
+                      <button data-imdbid="${data.imdbID}" id="remove-movie-btn"><i class="fa-solid fa-circle-minus"></i>Remove</button>
+                      </div>
+                      <p class="movie-synopsis">${data.Plot}</p>
+                  </div>
+                  </div>
+                  <hr>
+                  `
+              })  
+          })
+        } else {
+          localStorage.clear()
+          render();
+        }
+
     } else {
         movieContainer.innerHTML = 
         ` <div class="explore-div">
