@@ -4,12 +4,20 @@ const searchInput = document.querySelector('.search-input')
 const searchBtn = document.querySelector('.search-btn')
 const movieContainer = document.querySelector('.movie-container')
 
+let watchList = [];
+
 if(window.location.pathname == '/index.html') {
   searchBtn.addEventListener('click', (e) => {
     e.preventDefault();
     getMovies();
   })
 }
+
+document.addEventListener('click', (e) => {
+    if (e.target.id === 'add-movie-btn') {
+        watchList.push(e.target.dataset.imdbid)
+    }
+})
 
 async function getMovies() {
   const searchValue = searchInput.value
@@ -40,7 +48,7 @@ async function getMovies() {
             <div class="movie-details-container">
               <p class="movie-runtime">${data.Runtime}</p>
               <p class="movie-genres">${data.Genre}</p>
-              <button class="add-movie-btn"><i class="fa-solid fa-circle-plus"></i>Watchlist</button>
+              <button data-imdbid="${data.imdbID}" id="add-movie-btn"><i class="fa-solid fa-circle-plus"></i>Watchlist</button>
             </div>
             <p class="movie-synopsis">${data.Plot}</p>
           </div>
@@ -48,9 +56,12 @@ async function getMovies() {
         <hr>
       `}  
       )
+      console.log(movie)
     })
   }
 }
+
+// function to add movie to watch list involving imdbID; save to array; 
 
 function render() {
   if(window.location.pathname == '/index.html') {
