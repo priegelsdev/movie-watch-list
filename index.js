@@ -6,7 +6,7 @@ const movieContainer = document.querySelector('.movie-container')
 
 let watchList = [];
 
-if(window.location.pathname == '/index.html') {
+if(window.location.pathname == '/index.html' || window.location.pathname == '') {
   searchBtn.addEventListener('click', (e) => {
     e.preventDefault();
     getMovies();
@@ -17,6 +17,11 @@ document.addEventListener('click', (e) => {
     if (e.target.id === 'add-movie-btn' && !watchList.includes(e.target.dataset.imdbid)) {
         watchList.push(e.target.dataset.imdbid)
         localStorage.setItem('id', watchList)
+    } else if (e.target.id === 'remove-movie-btn') {
+        let index = watchList.indexOf(e.target.dataset.imdbid);
+        watchList.splice(index, 1)
+        localStorage.setItem('id', watchList)
+        render();
     }
 })
 
@@ -95,7 +100,7 @@ function render() {
                     <div class="movie-details-container">
                     <p class="movie-runtime">${data.Runtime}</p>
                     <p class="movie-genres">${data.Genre}</p>
-                    <button data-imdbid="${data.imdbID}" id="add-movie-btn"><i class="fa-solid fa-circle-plus"></i>Watchlist</button>
+                    <button data-imdbid="${data.imdbID}" id="remove-movie-btn"><i class="fa-solid fa-circle-minus"></i>Remove</button>
                     </div>
                     <p class="movie-synopsis">${data.Plot}</p>
                 </div>
@@ -103,6 +108,7 @@ function render() {
                 <hr>
                 `
             })  
+            watchList = storageArr;
         })
     } else {
         movieContainer.innerHTML = 
