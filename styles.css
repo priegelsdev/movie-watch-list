@@ -83,10 +83,16 @@ main {
   position: relative;
 }
 
-.explore-div {
+.explore-div, .error-div {
   margin: 10em;
   text-align: center;
   color: #DFDDDD;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.error-div {
+  margin: 10em 2em;
 }
 
 .movie-container {
