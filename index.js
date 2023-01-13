@@ -4,7 +4,11 @@ const searchInput = document.querySelector('.search-input')
 const searchBtn = document.querySelector('.search-btn')
 const movieContainer = document.querySelector('.movie-container')
 
+// initialize watchList to save movies to and interact with local storage for later rendering
 let watchList = [];
+
+/* event listeners; since using script for both html pages, pathname is included to avoid errors
+if better solution arises, fix! */
 
 if(window.location.pathname != '/watchlist.html') {
   searchBtn.addEventListener('click', (e) => {
@@ -26,6 +30,8 @@ document.addEventListener('click', (e) => {
         window.location.href="index.html";
     }
 })
+
+// function to fetch movies from omdb api
 
 async function getMovies() {
   const searchValue = searchInput.value
@@ -71,6 +77,7 @@ async function getMovies() {
 // function to display pages with or without movies
 
 function render() {
+        // if statement for watchlist when no movies are saved to local storage
     if (window.location.pathname == '/watchlist.html' && window.localStorage.length == 0) {
         movieContainer.innerHTML = 
         ` <div class="explore-div">
@@ -78,6 +85,8 @@ function render() {
             <button id="add-movies-btn"><i class="fa-solid fa-circle-plus"></i>Let's add some movies</button>
         </div>
         ` 
+
+        // if statement specifically for watchlist so that saved items from local storage get displayed
     } else if (window.location.pathname == '/watchlist.html' && window.localStorage.length > 0) {
         let storageStr = localStorage.getItem('id')
         let storageArr = storageStr.split(',')
@@ -108,11 +117,12 @@ function render() {
                   `
               })  
           })
+          // if all movies removed from local storage, clear storage and render again
         } else {
           localStorage.clear()
           render();
         }
-
+        // for index.html
     } else {
         movieContainer.innerHTML = 
         ` <div class="explore-div">
