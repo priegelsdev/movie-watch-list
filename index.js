@@ -51,4 +51,4 @@ movieContainer.innerHTML =
     <i class="fa-solid fa-film fa-3x"></i>
     <p class="start-exploring">Start exploring</p>
    </div>
-  `
+  ` 

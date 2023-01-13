@@ -63,6 +63,7 @@ input {
 .search-btn {
 /* padding: 0 2em; */
   border-radius: 0 5px 5px 0;
+  cursor: pointer;
 }
 
 /** MAIN **/
@@ -130,6 +131,7 @@ main {
 
 
 .movie-details-container {
+  width: 100%;
   display: flex;
   align-items: center;
   margin: -0.625em 0;
@@ -147,6 +149,7 @@ main {
   align-items: center;
   line-height: 1;
   gap: 5px;
+  cursor: pointer;
 }
 
 .add-movie-btn i {
@@ -154,6 +157,7 @@ main {
 }
 
 .movie-synopsis {
+  width: 100%;
   margin: 0.625em;
 }
 
@@ -174,11 +178,55 @@ hr:last-of-type {
 
   input {
     min-width: 70vw;
+    max-width: 83vw;
+  }
+
+  .movie-card {
+    max-width: 83vw;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .movie-poster {
+    max-width: 30%;
+    object-fit: contain;
+    margin: 0 2em 1em auto;
+  }
+
+  .movie-details-container {
+    justify-content: center;
+  }
+}
+
+@media (min-width: 650px) {
+  .movie-poster {
+    max-width: 25%;
+    object-fit: contain;
+    margin: 1em 2em 1em 0;
   }
 }
 
 @media (min-width: 768px) {
   header {
     padding: 2em 3.25em;
+  }
+
+  .search-btn {
+    padding: 0 2.5em;
+  }
+
+  .movie-info-container {
+    text-align: start;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .movie-details-container {
+    justify-content: flex-start;
+  }
+
+  .movie-synopsis {
+    margin-left: 0;
   }
 }
