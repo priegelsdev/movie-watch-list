@@ -4,10 +4,12 @@ const searchInput = document.querySelector('.search-input')
 const searchBtn = document.querySelector('.search-btn')
 const movieContainer = document.querySelector('.movie-container')
 
-searchBtn.addEventListener('click', (e) => {
-  e.preventDefault();
-  getMovies();
-})
+if(window.location.pathname == '/index.html') {
+  searchBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    getMovies();
+  })
+}
 
 async function getMovies() {
   const searchValue = searchInput.value
@@ -50,13 +52,22 @@ async function getMovies() {
   }
 }
 
-function renderMovies() {
-  
+function render() {
+  if(window.location.pathname == '/index.html') {
+    movieContainer.innerHTML = 
+    ` <div class="explore-div">
+        <i class="fa-solid fa-film fa-3x"></i>
+        <p class="start-exploring">Start exploring</p>
+      </div>
+    ` 
+  } else if (window.location.pathname == '/watchlist.html' /* && watchlist empty */) {
+    movieContainer.innerHTML = 
+    ` <div class="explore-div">
+        <p class="start-exploring">Your watchlist is looking a little empty...</p>
+        <button class="add-movie-btn watchlist"><i class="fa-solid fa-circle-plus"></i>Let's add some movies</button>
+      </div>
+    ` 
+  }
 }
 
-movieContainer.innerHTML = 
-  `<div class="explore-div">
-    <i class="fa-solid fa-film fa-3x"></i>
-    <p class="start-exploring">Start exploring</p>
-   </div>
-  ` 
+render();
