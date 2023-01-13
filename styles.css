@@ -29,15 +29,17 @@ h2 {
 
 /** HEADER **/
 
-header {
-  background-color: black;
+.header {
+  background: url('img/header1.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 15% 50%;
   color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 2em 2.25em;
   gap: 2em;
-/*   padding: 2em 4em; */
 }
 
 /** search bar **/
